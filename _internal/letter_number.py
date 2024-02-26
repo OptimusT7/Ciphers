@@ -1,7 +1,7 @@
 import questionary
 import os
 
-mode = questionary.select("Select mode:", choices=["Encode", "Decipher"]).ask()
+mode = questionary.select("Select mode:", choices=["Encode", "Decipher\n", "Back"]).ask()
 os.system('cls||clear')
 alphabet = [
     (' ', '0;'),

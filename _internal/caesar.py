@@ -1,7 +1,7 @@
 import questionary
 import os
 
-mode = questionary.select("Select mode:", choices=["Encode", "Brute Decipher", "Specific Decipher"]).ask()
+mode = questionary.select("Select mode:", choices=["Encode", "Brute Decipher", "Specific Decipher\n", "Back"]).ask()
 os.system('cls||clear')
 alphabet = 'abcdefghijklmnopqrstuvwxyz'*3
 caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

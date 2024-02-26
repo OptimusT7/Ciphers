@@ -2,7 +2,7 @@ import questionary
 import os
 import math
 
-mode = questionary.select("Select mode:", choices=["Encode", "Decipher"]).ask()
+mode = questionary.select("Select mode:", choices=["Encode", "Decipher\n", "Back"]).ask()
 os.system('cls||clear')
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
