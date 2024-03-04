@@ -17,7 +17,7 @@ skip = False
 while True:
     if not show_history:
         os.system('cls||clear')
-    cipher = questionary.select("Select Cipher:", choices=["Caesar", "Atbash", "Rail-Fence", "Columnar", "Playfair", "Letter-Number", "Morse Code", "Pig Latin\n", f"{history} History"]).ask()
+    cipher = questionary.select("Select Cipher:", choices=["Atbash", "Caesar", "Columnar", "Letter-Number", "Morse Code", "Pig Latin", "Playfair", "Rail-Fence\n", f"{history} History"]).ask()
     if cipher == "Caesar":
         if not show_history:
             os.system('cls||clear')
@@ -28,7 +28,7 @@ while True:
             os.system('cls||clear')
         _internal.atbash.main()
 
-    elif cipher == "Rail-Fence":
+    elif cipher == "Rail-Fence\n":
         if not show_history:
             os.system('cls||clear')
         _internal.rail_fence.main()
@@ -53,7 +53,7 @@ while True:
             os.system('cls||clear')
         _internal.morse.main()
 
-    elif cipher == "Pig Latin\n":
+    elif cipher == "Pig Latin":
         if not show_history:
             os.system('cls||clear')
         _internal.pig_latin.main()
