@@ -1,6 +1,8 @@
 import questionary
 import os
 
+vowels = 'aeiouAEIOU'
+
 def encode(text):
   result = ""
 
@@ -19,7 +21,7 @@ def decode(text):
         if word.endswith("way") and word[0] in vowels:
             result += ('(' + word[:-3] + ' or ' + word[-3] + word[:-3] + ') ')
         else:
-            result += word[-3] + word[:-3]
+            result += word[-3] + word[:-3] + ' '
 
     return result.strip()
 
