@@ -2,21 +2,6 @@ import questionary
 import os
 import math
 
-mode = questionary.select("Select mode:", choices=["Encode", "Decipher\n", "Back"]).ask()
-os.system('cls||clear')
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
-caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-# natural message
-n_message = ''
-
-# encoded message
-e_message = ''
-
-# keyword used to decipher the message
-keyword = ''
-
-
 def generate_matrix(keyword):
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
     matrix = [[None] * 5 for _ in range(5)]
@@ -98,39 +83,56 @@ def decode(text, keyword):
         decoded_text += decode_pair(pair, matrix)
     return decoded_text
 
+def main():
+    mode = questionary.select("Select mode:", choices=["Encode", "Decipher", "Back"]).ask()
 
-if mode == "Encode":
-    successful = False
-    while not successful:
-        n_message = input("Enter the message you wish to encode:\n")
-        if n_message:
-            successful = True
-        else:
-            print("Please enter the message")
-    successful = False
-    while not successful:
-        keyword = input("\nEnter the keyword: ")
-        if keyword:
-            successful = True
-        else:
-            print("Please enter the keyword")
-    print(encode(n_message, keyword))
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+    # natural message
+    n_message = ''
 
-elif mode == "Decipher":
     # encoded message
-    successful = False
-    while not successful:
-        e_message = input("Enter the message you wish to decode:\n")
-        if e_message:
-            successful = True
-        else:
-            print("Please enter the message")
-    successful = False
-    while not successful:
-        keyword = input("\nEnter the keyword: ")
-        if keyword:
-            successful = True
-        else:
-            print("Please enter the keyword")
-    print(decode(e_message, keyword))
+    e_message = ''
+
+    # keyword used to decipher the message
+    keyword = ''
+
+    if mode == "Encode":
+        successful = False
+        while not successful:
+            n_message = input("Enter the message you wish to encode:\n")
+            if n_message:
+                successful = True
+            else:
+                print("Please enter the message")
+        successful = False
+        while not successful:
+            keyword = input("\nEnter the keyword: ")
+            if keyword:
+                successful = True
+            else:
+                print("Please enter the keyword")
+        print(encode(n_message, keyword))
+
+
+    elif mode == "Decipher":
+        # encoded message
+        successful = False
+        while not successful:
+            e_message = input("Enter the message you wish to decode:\n")
+            if e_message:
+                successful = True
+            else:
+                print("Please enter the message")
+        successful = False
+        while not successful:
+            keyword = input("\nEnter the keyword: ")
+            if keyword:
+                successful = True
+            else:
+                print("Please enter the keyword")
+        print(decode(e_message, keyword))
+
+if __name__ == "__main__":
+    main()

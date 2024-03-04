@@ -1,34 +1,76 @@
 import questionary
 import os
 
+import _internal.caesar
+import _internal.atbash
+import _internal.rail_fence
+import _internal.columnar
+import _internal.playfair
+import _internal.letter_number
+import _internal.morse
+import _internal.pig_latin
+
+history = 'Show'
+show_history = False
+skip = False
+
 while True:
-    cipher = questionary.select("Select Cipher:", choices=["Caesar", "Atbash", "Rail-Fence", "Columnar", "Playfair", "Letter-Number", "Morse Code"]).ask()
-    if cipher == "Caesar":
+    if not show_history:
         os.system('cls||clear')
-        import _internal.caesar
+    cipher = questionary.select("Select Cipher:", choices=["Caesar", "Atbash", "Rail-Fence", "Columnar", "Playfair", "Letter-Number", "Morse Code", "Pig Latin\n", f"{history} History"]).ask()
+    if cipher == "Caesar":
+        if not show_history:
+            os.system('cls||clear')
+        _internal.caesar.main()
 
     elif cipher == "Atbash":
-        os.system('cls||clear')
-        import _internal.atbash
+        if not show_history:
+            os.system('cls||clear')
+        _internal.atbash.main()
 
     elif cipher == "Rail-Fence":
-        os.system('cls||clear')
-        import _internal.rail_fence
+        if not show_history:
+            os.system('cls||clear')
+        _internal.rail_fence.main()
 
     elif cipher == "Columnar":
-        os.system('cls||clear')
-        import _internal.columnar
+        if not show_history:
+            os.system('cls||clear')
+        _internal.columnar.main()
 
     elif cipher == "Playfair":
-        os.system('cls||clear')
-        import _internal.playfair
+        if not show_history:
+            os.system('cls||clear')
+        _internal.playfair.main()
 
     elif cipher == "Letter-Number":
-        os.system('cls||clear')
-        import _internal.letter_number
+        if not show_history:
+            os.system('cls||clear')
+        _internal.letter_number.main()
 
     elif cipher == "Morse Code":
-        os.system('cls||clear')
-        import _internal.morse
+        if not show_history:
+            os.system('cls||clear')
+        _internal.morse.main()
 
-    print('\n\n')
+    elif cipher == "Pig Latin\n":
+        if not show_history:
+            os.system('cls||clear')
+        _internal.pig_latin.main()
+        
+    elif cipher == f"{history} History":
+        if show_history:
+            show_history = False
+            history = 'Show'
+        else:
+            show_history = True
+            history = 'Hide'
+            os.system('cls||clear')
+        skip = True
+
+    if not skip:
+        print('\n')
+        choice = questionary.select("Continue?", choices=["Yes", "No"]).ask()
+        if choice == "No":
+            break
+    skip = False

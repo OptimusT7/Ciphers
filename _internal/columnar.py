@@ -1,19 +1,6 @@
 import questionary
 import os
 
-mode = questionary.select("Select mode:", choices=["Encode", "Brute Decipher", "Specific Decipher\n", "Back"]).ask()
-os.system('cls||clear')
-
-# natural message
-n_message = ''
-
-# encoded message
-e_message = ''
-
-# encode columns
-columns = 0
-
-
 def encode(text, columns):
     # Calculate the number of rows
     rows = len(text) // columns
@@ -64,62 +51,78 @@ def decode(e_text, columns):
                 result.append(matrix[row][col])
     return ''.join(result)
 
-if mode == "Encode":
-    successful = False
-    while not successful:
-        n_message = input("Enter the message you wish to encode:\n")
-        if n_message:
-            successful = True
-        else:
-            print("Please enter the message")
-    successful = False
-    while not successful:
-        columns = input("\nEnter the number of columns: ").strip()
-        try:
-            columns = int(columns)
-        except:
-            print("Please enter an integer")
-        else:
-            if columns != 0:
+def main():
+    mode = questionary.select("Select mode:", choices=["Encode", "Brute Decipher", "Specific Decipher", "Back"]).ask()
+
+    # natural message
+    n_message = ''
+
+    # encoded message
+    e_message = ''
+
+    # encode columns
+    columns = 0
+
+
+    if mode == "Encode":
+        successful = False
+        while not successful:
+            n_message = input("Enter the message you wish to encode:\n")
+            if n_message:
                 successful = True
             else:
-                print("The number of columns you entered is just 0")
+                print("Please enter the message")
+        successful = False
+        while not successful:
+            columns = input("\nEnter the number of columns: ").strip()
+            try:
+                columns = int(columns)
+            except:
+                print("Please enter an integer")
+            else:
+                if columns != 0:
+                    successful = True
+                else:
+                    print("The number of columns you entered is just 0")
 
-    print(encode(n_message, columns))
+        print(encode(n_message, columns))
 
-elif mode == "Brute Decipher":
-    successful = False
-    while not successful:
-        e_message = input("Enter the message you wish to decode:\n")
-        if e_message:
-            successful = True
-        else:
-            print("Please enter the message")
-    print()
-    for columns in range(2, len(e_message)):
-        print(f"Columns: {columns}")
-        print(decode(e_message, columns))
+    elif mode == "Brute Decipher":
+        successful = False
+        while not successful:
+            e_message = input("Enter the message you wish to decode:\n")
+            if e_message:
+                successful = True
+            else:
+                print("Please enter the message")
         print()
+        for columns in range(2, len(e_message)):
+            print(f"Columns: {columns}")
+            print(decode(e_message, columns))
+            print()
 
-elif mode == "Specific Decipher":
-    successful = False
-    while not successful:
-        e_message = input("Enter the message you wish to decode:\n")
-        if e_message:
-            successful = True
-        else:
-            print("Please enter the message")
-    successful = False
-    while not successful:
-        columns = input("\nEnter the number of columns: ").strip()
-        try:
-            columns = int(columns)
-        except:
-            print("Please enter an integer")
-        else:
-            if columns != 0:
+    elif mode == "Specific Decipher":
+        successful = False
+        while not successful:
+            e_message = input("Enter the message you wish to decode:\n")
+            if e_message:
                 successful = True
             else:
-                print("The number of columns you entered is just 0")
+                print("Please enter the message")
+        successful = False
+        while not successful:
+            columns = input("\nEnter the number of columns: ").strip()
+            try:
+                columns = int(columns)
+            except:
+                print("Please enter an integer")
+            else:
+                if columns != 0:
+                    successful = True
+                else:
+                    print("The number of columns you entered is just 0")
 
-    print(decode(e_message, columns))
+        print(decode(e_message, columns))
+
+if __name__ == "__main__":
+  main()

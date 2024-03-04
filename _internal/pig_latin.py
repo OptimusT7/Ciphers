@@ -1,10 +1,31 @@
 import questionary
 import os
 
+def encode(text):
+  result = ""
+
+  for word in text.split():
+    if word[0] in vowels:
+      result += word + "way "
+    else:
+      result += word[1:] + word[0] + "ay "
+
+  return result.strip()
+
+def decode(text):
+    result = ""
+
+    for word in text.split():
+        if word.endswith("way") and word[0] in vowels:
+            result += ('(' + word[:-3] + ' or ' + word[-3] + word[:-3] + ') ')
+        else:
+            result += word[-3] + word[:-3]
+
+    return result.strip()
+
+
 def main():
     mode = questionary.select("Select mode:", choices=["Encode", "Decipher", "Back"]).ask()
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     # natural message
     n_message = ''
@@ -20,15 +41,8 @@ def main():
                 successful = True
             else:
                 print("Please enter the message")
-
         print("\nEncoded Message:")
-        for char in n_message:
-            if char in alphabet:
-                print(alphabet[-(alphabet.index(char)) - 1], end="")
-            elif char in caps:
-                print(alphabet[-(alphabet.index(char.lower())) - 1].upper(), end="")
-            else:
-                print(char, end="")
+        print(encode(n_message))
 
     elif mode == "Decipher":
         successful = False
@@ -39,13 +53,7 @@ def main():
             else:
                 print("Please enter the message")
         print("\nDecoded Message:")
-        for char in e_message:
-            if char in alphabet:
-                print(alphabet[-(alphabet.index(char)) - 1], end="")
-            elif char in caps:
-                print(alphabet[-(alphabet.index(char.lower())) - 1].upper(), end="")
-            else:
-                print(char, end="")
+        print(decode(e_message))
 
 if __name__ == "__main__":
   main()
