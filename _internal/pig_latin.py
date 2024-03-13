@@ -2,26 +2,33 @@ import questionary
 import os
 
 vowels = 'aeiouAEIOU'
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 def encode(text):
-  result = ""
+    result = ""
 
-  for word in text.split():
-    if word[0] in vowels:
-      result += word + "way "
-    else:
-      result += word[1:] + word[0] + "ay "
+    for word in text.split():
+        if not all(x not in word for x in (alphabet or alphabet.upper())):
+            if word[0] in vowels:
+                result += word + "way "
+            else:
+                result += word[1:] + word[0] + "ay "
+        else:
+            result += word + " "
 
-  return result.strip()
+    return result.strip()
 
 def decode(text):
     result = ""
 
     for word in text.split():
-        if word.endswith("way") and word[0] in vowels:
-            result += ('(' + word[:-3] + ' or ' + word[-3] + word[:-3] + ') ')
+        if not all(x not in word for x in (alphabet or alphabet.upper())):
+            if word.endswith("way") and word[0] in vowels:
+                result += ('(' + word[:-3] + ' or ' + word[-3] + word[:-3] + ') ')
+            else:
+                result += word[-3] + word[:-3] + ' '
         else:
-            result += word[-3] + word[:-3] + ' '
+            result += word + " "
 
     return result.strip()
 
