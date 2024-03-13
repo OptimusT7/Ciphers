@@ -86,9 +86,6 @@ def decode(text, keyword):
 def main():
     mode = questionary.select("Select mode:", choices=["Encode", "Decipher", "Back"]).ask()
 
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
     # natural message
     n_message = ''
 
@@ -114,7 +111,6 @@ def main():
             else:
                 print("Please enter the keyword")
         print(encode(n_message, keyword))
-
 
     elif mode == "Decipher":
         # encoded message

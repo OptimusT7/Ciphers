@@ -5,7 +5,6 @@ def main():
     mode = questionary.select("Select mode:", choices=["Encode", "Decipher", "Back"]).ask()
     
     alphabet = [
-        (' ', '0;'),
         ('j', '10;'),
         ('k', '11;'),
         ('l', '12;'),
@@ -31,7 +30,8 @@ def main():
         ('f', '6;'),
         ('g', '7;'),
         ('h', '8;'),
-        ('i', '9;')
+        ('i', '9;'),
+        (' ', '0;')
     ]
 
     # natural message
@@ -48,13 +48,12 @@ def main():
                 successful = True
             else:
                 print("Please enter the message")
-        successful = False
+
         e_message = n_message
         print("\nEncoded Message:")
         for (x, y) in alphabet:
             e_message = e_message.replace(x, y)
         print(e_message[:-1])
-
 
     elif mode == "Decipher":
         successful = False
@@ -64,7 +63,7 @@ def main():
                 successful = True
             else:
                 print("Please enter the message")
-        successful = False
+
         if e_message[-1] != ';':
             e_message += ';'
         n_message = e_message

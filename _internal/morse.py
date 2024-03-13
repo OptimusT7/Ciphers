@@ -58,13 +58,12 @@ def main():
                 successful = True
             else:
                 print("Please enter the message")
-        successful = False
+
         e_message = n_message
         print("\nEncoded Message:")
         for (x, y) in alphabet:
             e_message = e_message.replace(x, y)
         print(e_message[:-2])
-
 
     elif mode == "Decipher":
         successful = False
@@ -74,7 +73,7 @@ def main():
                 successful = True
             else:
                 print("Please enter the message")
-        successful = False
+
         if e_message[-1] != '  ':
             e_message += '  '
         n_message = e_message

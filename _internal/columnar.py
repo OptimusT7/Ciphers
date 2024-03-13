@@ -63,7 +63,6 @@ def main():
     # encode columns
     columns = 0
 
-
     if mode == "Encode":
         successful = False
         while not successful:
